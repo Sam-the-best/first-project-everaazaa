@@ -1,6 +1,11 @@
+controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
+    mySprite.vy += -150
+    mySprite.ay = 300
+})
+let mySprite: Sprite = null
 scene.setBackgroundColor(9)
 tiles.setCurrentTilemap(tilemap`level1`)
-let mySprite = sprites.create(img`
+mySprite = sprites.create(img`
     . . . . . . . f f f f f . . . . 
     . . . . . . f e e e e e f . . . 
     . . . . . f e e e d d d d f . . 
@@ -19,4 +24,9 @@ let mySprite = sprites.create(img`
     . . . f f f f f f f f f . . . . 
     `, SpriteKind.Player)
 controller.moveSprite(mySprite)
+mySprite.setPosition(0, 50)
 scene.cameraFollowSprite(mySprite)
+mySprite.setVelocity(100, 0)
+forever(function () {
+    music.play(music.stringPlayable("E B C5 A B G A F ", 120), music.PlaybackMode.UntilDone)
+})
