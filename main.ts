@@ -1,4 +1,4 @@
-controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
+controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     mySprite.vy += -150
     mySprite.ay = 300
 })
@@ -24,7 +24,7 @@ mySprite = sprites.create(img`
     . . . f f f f f f f f f . . . . 
     `, SpriteKind.Player)
 controller.moveSprite(mySprite)
-mySprite.setPosition(0, 50)
+mySprite.setPosition(0, 120)
 scene.cameraFollowSprite(mySprite)
 mySprite.setVelocity(100, 0)
 forever(function () {
