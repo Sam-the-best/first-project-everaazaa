@@ -1,6 +1,12 @@
+controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
+    game.setGameOverEffect(false, effects.dissolve)
+    game.gameOver(false)
+})
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    mySprite.vy += -150
-    mySprite.ay = 300
+    if (mySprite.vy == 0) {
+        mySprite.vy += -150
+        mySprite.ay = 150
+    }
 })
 let mySprite: Sprite = null
 scene.setBackgroundColor(9)
@@ -23,10 +29,10 @@ mySprite = sprites.create(img`
     . . . f d b b d d c d d f . . . 
     . . . f f f f f f f f f . . . . 
     `, SpriteKind.Player)
-controller.moveSprite(mySprite)
-mySprite.setPosition(0, 120)
+controller.moveSprite(mySprite, 100, 0)
+mySprite.ay = 300
 scene.cameraFollowSprite(mySprite)
-mySprite.setVelocity(100, 0)
+tiles.placeOnTile(mySprite, tiles.getTileLocation(0, 0))
 forever(function () {
     music.play(music.stringPlayable("E B C5 A B G A F ", 120), music.PlaybackMode.UntilDone)
 })
