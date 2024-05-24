@@ -1,12 +1,22 @@
-controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
+controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     game.setGameOverEffect(false, effects.dissolve)
     game.gameOver(false)
+})
+scene.onOverlapTile(SpriteKind.Player, sprites.builtin.forestTiles0, function (sprite, location) {
+    tiles.placeOnTile(mySprite, tiles.getTileLocation(81, 9))
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     if (mySprite.vy == 0) {
         mySprite.vy += -150
         mySprite.ay = 150
     }
+})
+scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.hazardLava1, function (sprite, location) {
+    game.setGameOverEffect(false, effects.dissolve)
+    game.gameOver(false)
+})
+scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.hazardSpike, function (sprite, location) {
+    tiles.placeOnTile(mySprite, tiles.getTileLocation(115, 7))
 })
 let mySprite: Sprite = null
 scene.setBackgroundColor(9)
