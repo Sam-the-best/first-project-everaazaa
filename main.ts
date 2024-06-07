@@ -1,15 +1,23 @@
-controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
-    game.setGameOverEffect(false, effects.dissolve)
-    game.gameOver(false)
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile0`, function (sprite, location) {
+    game.setGameOverEffect(true, effects.confetti)
+    game.gameOver(true)
+})
+controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
+    if (mySprite.vy == 0) {
+        mySprite.vy += -150
+        mySprite.ay = 150
+    }
+})
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile`, function (sprite, location) {
+    game.setGameOverEffect(true, effects.confetti)
+    game.gameOver(true)
 })
 scene.onOverlapTile(SpriteKind.Player, sprites.builtin.forestTiles0, function (sprite, location) {
     tiles.placeOnTile(mySprite, tiles.getTileLocation(81, 9))
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    if (mySprite.vy == 0) {
-        mySprite.vy += -150
-        mySprite.ay = 150
-    }
+    game.setGameOverEffect(false, effects.dissolve)
+    game.gameOver(false)
 })
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.hazardLava1, function (sprite, location) {
     game.setGameOverEffect(false, effects.dissolve)
@@ -19,6 +27,10 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.hazardSpike, function (sp
     tiles.placeOnTile(mySprite, tiles.getTileLocation(115, 7))
 })
 let mySprite: Sprite = null
+namespace userconfig {
+    export const ARCADE_SCREEN_WIDTH = 225
+    export const ARCADE_SCREEN_HEIGHT = 225
+}
 scene.setBackgroundColor(9)
 tiles.setCurrentTilemap(tilemap`level1`)
 mySprite = sprites.create(img`
